@@ -23,7 +23,7 @@ def get_news_from_filmweb_page(url):
     return result[0:18]
 
 
-def get_all_urls_from_many_filmweb_pages(*, start, end):
+def get_all_urls_from_many_filmweb_pages(start, end):
     url = 'https://www.filmweb.pl/news?page='
     result = []
     for page in range(start, end):
@@ -31,7 +31,7 @@ def get_all_urls_from_many_filmweb_pages(*, start, end):
     return result
 
 
-def scrape(page_start, page_end):
+def scrape(*, page_start, page_end):
     my_dict = {}
     url_list = get_all_urls_from_many_filmweb_pages(start=page_start, end=page_end)
     for i, url in enumerate(url_list):
@@ -43,4 +43,5 @@ def scrape(page_start, page_end):
         json.dump(my_dict, json_file)
 
 
-scrape(1, 2)
+# Example usage
+scrape(page_start=1, page_end=2)
